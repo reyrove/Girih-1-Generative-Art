@@ -111,6 +111,7 @@
     .ribbon {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; justify-content: space-between; align-items: center;
+      gap: 20px;
       padding: 18px 32px;
       background: rgba(10, 10, 10, 0.72);
       backdrop-filter: blur(14px);
@@ -129,17 +130,43 @@
       letter-spacing: -0.01em;
       text-transform: none;
       color: var(--paper);
+      flex-shrink: 0;
     }
     .ribbon-brand em { color: var(--gold-soft); font-style: italic; }
 
-    .ribbon-nav { display: flex; gap: 28px; }
-    .ribbon-nav a { transition: color 300ms ease; }
+    .ribbon-nav {
+      display: flex;
+      gap: 28px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      -webkit-overflow-scrolling: touch;
+      flex-shrink: 1;
+      min-width: 0;
+    }
+    .ribbon-nav::-webkit-scrollbar { display: none; }
+
+    .ribbon-nav a {
+      transition: color 300ms ease;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
     .ribbon-nav a:hover { color: var(--gold-soft); }
 
     @media (max-width: 720px) {
-      .ribbon { padding: 14px 20px; font-size: 9px; }
+      .ribbon {
+        padding: 12px 16px;
+        gap: 14px;
+      }
       .ribbon-brand { font-size: 15px; }
-      .ribbon-nav .hide-sm { display: none; }
+      .ribbon-nav {
+        gap: 18px;
+        font-size: 9px;
+        /* fade mask to hint scrollability */
+        mask-image: linear-gradient(to right, black 0, black calc(100% - 20px), transparent 100%);
+        -webkit-mask-image: linear-gradient(to right, black 0, black calc(100% - 20px), transparent 100%);
+      }
     }
 
     /* ============================================================
@@ -158,6 +185,8 @@
 
     .cover-meta {
       display: flex; justify-content: space-between; align-items: baseline;
+      gap: 16px;
+      flex-wrap: wrap;
       font-family: var(--mono); font-size: 10px;
       letter-spacing: 0.22em; text-transform: uppercase;
       color: var(--text-faint);
@@ -227,6 +256,7 @@
 
     @media (max-width: 720px) {
       .cover { padding: 100px 0 40px; gap: 40px; }
+      .cover-title { font-size: clamp(4rem, 22vw, 7rem); }
       .cover-art { margin: 0 auto; }
       .cover-foot { grid-template-columns: 1fr; gap: 20px; }
     }
@@ -321,6 +351,11 @@
       .statement-label { position: static; }
     }
 
+    @media (max-width: 720px) {
+      .statement { padding: 72px 0; }
+      .statement-ai { padding: 18px 20px; font-size: 12px; }
+    }
+
     /* ============================================================
        WORK
     ============================================================ */
@@ -354,6 +389,10 @@
       height: auto;
       object-fit: contain;
       display: block;
+    }
+
+    @media (max-width: 720px) {
+      .art-stage { padding: 16px; }
     }
 
     .work-info { display: flex; flex-direction: column; gap: 32px; }
@@ -430,6 +469,11 @@
     .btn:hover { color: var(--paper); border-color: var(--gold); }
     .btn.primary { color: var(--gold-soft); border-color: var(--gold); }
     .btn.primary:hover { background: var(--gold); color: var(--ink); border-color: var(--gold); }
+
+    @media (max-width: 720px) {
+      .controls { width: 100%; }
+      .btn { flex: 1; padding: 0 16px; }
+    }
 
     /* ============================================================
        APPLICATION
@@ -626,12 +670,16 @@
     }
 
     @media (max-width: 720px) {
-      .application { padding: 90px 0; }
-      .application-intro { margin-left: 0; }
-      .framed-plate { padding: 50px 20px; }
-      .frame-inner { padding: 18px; }
-      .surface-head { grid-template-columns: 1fr; gap: 16px; margin-top: 60px; }
+      .application { padding: 72px 0; }
+      .application-intro { margin-left: 0; margin-bottom: 48px; }
+      .framed-plate { padding: 32px 12px; }
+      .framed-plate::before { top: 14px; left: 16px; font-size: 8px; }
+      .framed-plate::after { right: 16px; bottom: 14px; font-size: 8px; }
+      .frame-inner { padding: 14px; }
+      .frame-caption { font-size: 8px; gap: 10px; flex-wrap: wrap; }
+      .surface-head { grid-template-columns: 1fr; gap: 16px; margin-top: 56px; }
       .surface-grid { grid-template-columns: 1fr; }
+      .surface-item .surface-canvas-wrap { aspect-ratio: 4 / 3 !important; }
     }
 
     /* ============================================================
@@ -684,6 +732,10 @@
       .process-card h3 { margin-top: 32px; }
     }
 
+    @media (max-width: 720px) {
+      .process-card { padding: 28px 24px; }
+    }
+
     /* ============================================================
        ARCHIVE
     ============================================================ */
@@ -728,6 +780,7 @@
       justify-content: space-between;
       align-items: baseline;
       gap: 24px;
+      flex-wrap: wrap;
       color: var(--text-faint);
       font-family: var(--mono);
       font-size: 10px;
@@ -828,6 +881,12 @@
       .commission-layout { grid-template-columns: 1fr; gap: 60px; }
     }
 
+    @media (max-width: 720px) {
+      .commission { padding: 72px 0; }
+      .commission-layout { gap: 48px; }
+      .contact-cta { width: 100%; }
+    }
+
     /* ============================================================
        COLOPHON
     ============================================================ */
@@ -878,6 +937,7 @@
       line-height: 2.1;
       transition: color 300ms ease;
       letter-spacing: 0.14em;
+      word-break: break-word;
     }
     .colophon .col a:hover { color: var(--gold-soft); }
 
@@ -902,8 +962,17 @@
       text-transform: none;
     }
 
-    @media (max-width: 900px) { .colophon { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 560px) { .colophon { grid-template-columns: 1fr; gap: 28px; } }
+    @media (max-width: 900px) {
+      .colophon { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 560px) {
+      .colophon { grid-template-columns: 1fr 1fr; gap: 24px; }
+    }
+
+    @media (max-width: 380px) {
+      .colophon { grid-template-columns: 1fr; gap: 28px; }
+    }
 
     /* ============================================================
        MOCKUP GALLERY
@@ -1102,7 +1171,7 @@
       text-transform: uppercase;
       color: var(--text-faint);
     }
-    .legal-foot a { color: var(--gold-soft); }
+    .legal-foot a { color: var(--gold-soft); word-break: break-all; }
 
     @keyframes legalFade {
       from { opacity: 0; }
@@ -1115,6 +1184,19 @@
 
     @media (max-width: 560px) {
       .legal-dialog { padding: 40px 24px 24px; }
+    }
+
+    /* ============================================================
+       GLOBAL MOBILE POLISH
+    ============================================================ */
+
+    @media (max-width: 720px) {
+      :root {
+        --page: min(1180px, calc(100vw - 32px));
+      }
+      .section { padding: 72px 0; }
+      .section-head { grid-template-columns: 1fr; gap: 12px; margin-bottom: 48px; }
+      .section-title { font-size: clamp(2rem, 8vw, 3rem); }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1134,10 +1216,10 @@
 <nav class="ribbon">
   <span class="ribbon-brand">Girih 1</span>
   <div class="ribbon-nav">
-    <a href="#statement" class="hide-sm">Statement</a>
-    <a href="#work" class="hide-sm">Plate</a>
-    <a href="#application" class="hide-sm">Surfaces</a>
-    <a href="#archive" class="hide-sm">Archive</a>
+    <a href="#statement">Statement</a>
+    <a href="#work">Plate</a>
+    <a href="#application">Surfaces</a>
+    <a href="#archive">Archive</a>
     <a href="#commission">Commission</a>
   </div>
 </nav>
@@ -1501,59 +1583,9 @@
 <section class="commission" id="commission">
 
   <div class="page">
+
+    <!-- Commission intro (title + copy + services) -->
     <div class="commission-layout">
-
-      <!-- MOCKUP GALLERY -->
-      <div class="mockup-gallery">
-
-        <div class="mockup-head">
-          <span class="eyebrow">Applied · Girih 1</span>
-          <h3 class="mockup-title">
-            The same seed,<br />
-            <em>three surfaces.</em>
-          </h3>
-        </div>
-
-        <div class="mockup-grid">
-
-          <figure class="mockup-item">
-            <div class="mockup-frame">
-              <img src="images/tote.png" alt="Girih 1 tote bag — applied composition" loading="lazy" />
-            </div>
-            <figcaption>
-              <span class="mockup-id">01 / Tote</span>
-              <span class="mockup-seed">Seed 4A2F9C</span>
-            </figcaption>
-          </figure>
-
-          <figure class="mockup-item">
-            <div class="mockup-frame">
-              <img src="images/tee.png" alt="Girih 1 t-shirt — applied composition" loading="lazy" />
-            </div>
-            <figcaption>
-              <span class="mockup-id">02 / Apparel</span>
-              <span class="mockup-seed">Seed 4A2F9C</span>
-            </figcaption>
-          </figure>
-
-          <figure class="mockup-item">
-            <div class="mockup-frame">
-              <img src="images/cushion.png" alt="Girih 1 cushion — applied composition" loading="lazy" />
-            </div>
-            <figcaption>
-              <span class="mockup-id">03 / Interior</span>
-              <span class="mockup-seed">Seed 4A2F9C</span>
-            </figcaption>
-          </figure>
-
-        </div>
-
-        <p class="mockup-note">
-          Each surface is drawn from the same numeric seed —
-          reproducible, licensable, adaptable to your brief.
-        </p>
-
-      </div>
 
       <div>
         <span class="eyebrow">For brands &amp; studios</span>
@@ -1602,6 +1634,59 @@
       </div>
 
     </div>
+
+    <!-- Mockup gallery (below the commission intro) -->
+    <div class="mockup-gallery">
+
+      <div class="mockup-head">
+        <span class="eyebrow">Applied · Girih 1</span>
+        <h3 class="mockup-title">
+          The same seed,<br />
+          <em>three surfaces.</em>
+        </h3>
+      </div>
+
+      <div class="mockup-grid">
+
+        <figure class="mockup-item">
+          <div class="mockup-frame">
+            <img src="images/tote.png" alt="Girih 1 tote bag — applied composition" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="mockup-id">01 / Tote</span>
+            <span class="mockup-seed">Seed 4A2F9C</span>
+          </figcaption>
+        </figure>
+
+        <figure class="mockup-item">
+          <div class="mockup-frame">
+            <img src="images/tee.png" alt="Girih 1 t-shirt — applied composition" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="mockup-id">02 / Apparel</span>
+            <span class="mockup-seed">Seed 4A2F9C</span>
+          </figcaption>
+        </figure>
+
+        <figure class="mockup-item">
+          <div class="mockup-frame">
+            <img src="images/cushion.png" alt="Girih 1 cushion — applied composition" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="mockup-id">03 / Interior</span>
+            <span class="mockup-seed">Seed 4A2F9C</span>
+          </figcaption>
+        </figure>
+
+      </div>
+
+      <p class="mockup-note">
+        Each surface is drawn from the same numeric seed —
+        reproducible, licensable, adaptable to your brief.
+      </p>
+
+    </div>
+
   </div>
 
 </section>
@@ -1632,7 +1717,7 @@
   <div class="col">
     <span class="col-title">Studio</span>
     <a href="mailto:reyhanehdaneshdoost@gmail.com">reyhanehdaneshdoost@gmail.com</a>
-      <a href="https://reyrove.github.io/">Website</a>
+    <a href="https://reyrove.github.io/">Website</a>
     <a href="https://www.instagram.com/rey._.rove/">Instagram</a>
     <a href="https://www.linkedin.com/in/reyhaneh-daneshdoost-730481160/">LinkedIn</a>
     <a href="https://x.com/reyrove">X</a>
@@ -1653,7 +1738,7 @@
 </footer>
 
 <!-- ============================================================
-     LEGAL MODAL (must come BEFORE the script)
+     LEGAL MODAL
 ============================================================ -->
 <div class="legal-modal" id="legalModal" aria-hidden="true">
   <div class="legal-overlay" data-close></div>
