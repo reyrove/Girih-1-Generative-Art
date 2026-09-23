@@ -104,10 +104,7 @@
 
     .section-title em { font-style: italic; color: var(--gold-soft); }
 
-    /* ============================================================
-       RIBBON
-    ============================================================ */
-
+    /* RIBBON */
     .ribbon {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; justify-content: space-between; align-items: center;
@@ -155,24 +152,17 @@
     .ribbon-nav a:hover { color: var(--gold-soft); }
 
     @media (max-width: 720px) {
-      .ribbon {
-        padding: 12px 16px;
-        gap: 14px;
-      }
+      .ribbon { padding: 12px 16px; gap: 14px; }
       .ribbon-brand { font-size: 15px; }
       .ribbon-nav {
         gap: 18px;
         font-size: 9px;
-        /* fade mask to hint scrollability */
         mask-image: linear-gradient(to right, black 0, black calc(100% - 20px), transparent 100%);
         -webkit-mask-image: linear-gradient(to right, black 0, black calc(100% - 20px), transparent 100%);
       }
     }
 
-    /* ============================================================
-       COVER
-    ============================================================ */
-
+    /* COVER */
     .cover {
       min-height: 100vh;
       min-height: 100dvh;
@@ -261,10 +251,7 @@
       .cover-foot { grid-template-columns: 1fr; gap: 20px; }
     }
 
-    /* ============================================================
-       STATEMENT
-    ============================================================ */
-
+    /* STATEMENT */
     .statement {
       background: var(--bg-soft);
       border-top: 1px solid var(--line);
@@ -356,10 +343,7 @@
       .statement-ai { padding: 18px 20px; font-size: 12px; }
     }
 
-    /* ============================================================
-       WORK
-    ============================================================ */
-
+    /* WORK */
     .work-layout {
       display: grid;
       grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.75fr);
@@ -475,10 +459,7 @@
       .btn { flex: 1; padding: 0 16px; }
     }
 
-    /* ============================================================
-       APPLICATION
-    ============================================================ */
-
+    /* APPLICATION */
     .application {
       background: var(--paper);
       color: var(--ink);
@@ -682,10 +663,7 @@
       .surface-item .surface-canvas-wrap { aspect-ratio: 4 / 3 !important; }
     }
 
-    /* ============================================================
-       PROCESS
-    ============================================================ */
-
+    /* PROCESS */
     .process-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -736,10 +714,7 @@
       .process-card { padding: 28px 24px; }
     }
 
-    /* ============================================================
-       ARCHIVE
-    ============================================================ */
-
+    /* ARCHIVE */
     .archive-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -794,10 +769,7 @@
       .archive-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
-    /* ============================================================
-       COMMISSION
-    ============================================================ */
-
+    /* COMMISSION */
     .commission {
       background: var(--bg-soft);
       padding: 140px 0;
@@ -887,10 +859,7 @@
       .contact-cta { width: 100%; }
     }
 
-    /* ============================================================
-       COLOPHON
-    ============================================================ */
-
+    /* COLOPHON */
     .colophon {
       padding: 80px 0 60px;
       border-top: 1px solid var(--line);
@@ -974,10 +943,7 @@
       .colophon { grid-template-columns: 1fr; gap: 28px; }
     }
 
-    /* ============================================================
-       MOCKUP GALLERY
-    ============================================================ */
-
+    /* MOCKUP GALLERY */
     .mockup-gallery {
       margin-top: 120px;
       padding-top: 80px;
@@ -1074,10 +1040,7 @@
       .mockup-grid { grid-template-columns: 1fr; gap: 24px; }
     }
 
-    /* ============================================================
-       LEGAL MODAL
-    ============================================================ */
-
+    /* LEGAL MODAL */
     .legal-modal {
       position: fixed;
       inset: 0;
@@ -1142,7 +1105,6 @@
       color: var(--paper);
       margin-bottom: 24px;
     }
-    .legal-title em { font-style: italic; color: var(--gold-soft); }
 
     .legal-body {
       color: var(--text-dim);
@@ -1153,8 +1115,6 @@
     .legal-body p { margin-bottom: 14px; }
     .legal-body p:last-child { margin-bottom: 0; }
     .legal-body strong { color: var(--text); font-weight: 500; }
-    .legal-body ul { margin: 0 0 14px 18px; }
-    .legal-body li { margin-bottom: 6px; }
 
     .legal-foot {
       margin-top: 32px;
@@ -1173,10 +1133,7 @@
     }
     .legal-foot a { color: var(--gold-soft); word-break: break-all; }
 
-    @keyframes legalFade {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
+    @keyframes legalFade { from { opacity: 0; } to { opacity: 1; } }
     @keyframes legalRise {
       from { opacity: 0; transform: translateY(16px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -1186,14 +1143,9 @@
       .legal-dialog { padding: 40px 24px 24px; }
     }
 
-    /* ============================================================
-       GLOBAL MOBILE POLISH
-    ============================================================ */
-
+    /* GLOBAL MOBILE */
     @media (max-width: 720px) {
-      :root {
-        --page: min(1180px, calc(100vw - 32px));
-      }
+      :root { --page: min(1180px, calc(100vw - 32px)); }
       .section { padding: 72px 0; }
       .section-head { grid-template-columns: 1fr; gap: 12px; margin-bottom: 48px; }
       .section-title { font-size: clamp(2rem, 8vw, 3rem); }
@@ -1210,9 +1162,7 @@
 </head>
 <body>
 
-<!-- ============================================================
-     RIBBON
-============================================================ -->
+<!-- RIBBON -->
 <nav class="ribbon">
   <span class="ribbon-brand">Girih 1</span>
   <div class="ribbon-nav">
@@ -1224,9 +1174,7 @@
   </div>
 </nav>
 
-<!-- ============================================================
-     COVER
-============================================================ -->
+<!-- COVER -->
 <header class="cover page">
 
   <div class="cover-meta">
@@ -1276,9 +1224,7 @@
 
 </header>
 
-<!-- ============================================================
-     STATEMENT
-============================================================ -->
+<!-- STATEMENT -->
 <section class="statement" id="statement">
 
   <div class="page">
@@ -1338,9 +1284,7 @@
 
 </section>
 
-<!-- ============================================================
-     PLATE
-============================================================ -->
+<!-- PLATE -->
 <section class="section page" id="work">
 
   <div class="section-head">
@@ -1408,9 +1352,7 @@
 
 </section>
 
-<!-- ============================================================
-     APPLICATION — Framed plate + surfaces
-============================================================ -->
+<!-- APPLICATION -->
 <section class="application" id="application">
 
   <div class="page">
@@ -1506,9 +1448,7 @@
 
 </section>
 
-<!-- ============================================================
-     PROCESS
-============================================================ -->
+<!-- PROCESS -->
 <section class="section page" id="process">
 
   <div class="section-head">
@@ -1555,9 +1495,7 @@
 
 </section>
 
-<!-- ============================================================
-     ARCHIVE
-============================================================ -->
+<!-- ARCHIVE -->
 <section class="section page" id="archive">
 
   <div class="section-head">
@@ -1577,14 +1515,11 @@
 
 </section>
 
-<!-- ============================================================
-     COMMISSION
-============================================================ -->
+<!-- COMMISSION -->
 <section class="commission" id="commission">
 
   <div class="page">
 
-    <!-- Commission intro (title + copy + services) -->
     <div class="commission-layout">
 
       <div>
@@ -1635,7 +1570,7 @@
 
     </div>
 
-    <!-- Mockup gallery (below the commission intro) -->
+    <!-- MOCKUP GALLERY -->
     <div class="mockup-gallery">
 
       <div class="mockup-head">
@@ -1691,9 +1626,7 @@
 
 </section>
 
-<!-- ============================================================
-     COLOPHON
-============================================================ -->
+<!-- COLOPHON -->
 <footer class="colophon page">
 
   <div class="col">
@@ -1737,9 +1670,7 @@
 
 </footer>
 
-<!-- ============================================================
-     LEGAL MODAL
-============================================================ -->
+<!-- LEGAL MODAL -->
 <div class="legal-modal" id="legalModal" aria-hidden="true">
   <div class="legal-overlay" data-close></div>
 
@@ -1785,6 +1716,12 @@ let seed = Date.now() + Math.random() * 1000000;
 let rng = new RandomGenerator(seed);
 let resizeTmr = null;
 let nextFrame = null;
+
+// --- SEED DISPLAY HELPER ---
+// Show the LAST 8 digits so each seed is visually distinct.
+function seedLabel(n) {
+  return String(n).slice(-8);
+}
 
 // --- COLOR ARRAYS ---
 const BackgroundColours1 = [
@@ -2041,7 +1978,7 @@ function drawCanvas() {
 function updateUI() {
   const s = document.getElementById('seedDisplay');
   const st = document.getElementById('styleDisplay');
-  if (s)  s.textContent = String(seed).slice(0, 8);
+  if (s)  s.textContent = seedLabel(seed);
   if (st) st.textContent = features.girihName || '—';
 }
 
@@ -2057,7 +1994,7 @@ function regenerate() {
 function autoDownloadCanvas() {
   const canvas = document.getElementById('target');
   const link = document.createElement('a');
-  const seedStr = String(seed).slice(0, 8);
+  const seedStr = seedLabel(seed);
   link.download = prefix + '_Seed' + seedStr + '.png';
   link.href = canvas.toDataURL('image/png', 1.0);
   link.click();
@@ -2191,8 +2128,15 @@ function initArchive() {
   archiveSeeds.length = 0;
   archiveFeatures.length = 0;
 
+  const base = Date.now();
+  const used = new Set();
+
   for (let i = 0; i < 8; i++) {
-    const s = Math.floor(Date.now() + Math.random() * 1000000) + i * 97;
+    let s;
+    do {
+      s = base + Math.floor(Math.random() * 1000000) + i * 97;
+    } while (used.has(s));
+    used.add(s);
     archiveSeeds.push(s);
 
     const r = new RandomGenerator(s);
@@ -2205,7 +2149,7 @@ function initArchive() {
 
     const item = document.createElement('div');
     item.className = 'archive-item';
-    item.setAttribute('data-seed', String(s).slice(0, 6));
+    item.setAttribute('data-seed', seedLabel(s));
     const cv = document.createElement('canvas');
     item.appendChild(cv);
     item.addEventListener('click', () => loadArchiveSeed(i));
@@ -2241,13 +2185,11 @@ function loadArchiveSeed(index) {
   layoutCanvas();
   drawFramedPlate();
   drawSurfaces();
+  updateUI();  // ← Ensures Plate 001 shows the selected archive seed
   document.getElementById('work').scrollIntoView({ behavior: 'smooth' });
 }
 
-// ============================================================
-// LEGAL MODAL — content + open/close
-// ============================================================
-
+// --- LEGAL MODAL ---
 const legalContent = {
   licensing: {
     eyebrow: 'Legal · 01',
