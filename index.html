@@ -39,12 +39,16 @@
       --serif: "Cormorant Garamond", Georgia, serif;
       --mono: "DM Mono", ui-monospace, monospace;
 
-      --page: min(1180px, calc(100vw - 64px));
+      --page: min(1180px, calc(100% - 64px));
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    html { scroll-behavior: smooth; background: var(--bg); }
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+      overflow-x: hidden;
+    }
 
     body {
       background: var(--bg);
@@ -55,15 +59,20 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       overflow-x: hidden;
+      width: 100%;
     }
 
     a { color: inherit; text-decoration: none; }
     button { font: inherit; }
-    img, canvas { display: block; max-width: 100%; }
+    img, canvas { display: block; max-width: 100%; height: auto; }
 
     ::selection { background: var(--gold); color: var(--bg); }
 
-    .page { width: var(--page); margin: 0 auto; }
+    .page {
+      width: var(--page);
+      margin: 0 auto;
+      max-width: 100%;
+    }
 
     .eyebrow {
       display: inline-block;
@@ -660,7 +669,7 @@
       .frame-caption { font-size: 8px; gap: 10px; flex-wrap: wrap; }
       .surface-head { grid-template-columns: 1fr; gap: 16px; margin-top: 56px; }
       .surface-grid { grid-template-columns: 1fr; }
-      .surface-item .surface-canvas-wrap { aspect-ratio: 4 / 3 !important; }
+      /* FIX: removed aspect-ratio override so each surface keeps its own proportion on mobile */
     }
 
     /* PROCESS */
@@ -1145,10 +1154,15 @@
 
     /* GLOBAL MOBILE */
     @media (max-width: 720px) {
-      :root { --page: min(1180px, calc(100vw - 32px)); }
+      :root { --page: min(1180px, calc(100% - 32px)); }
       .section { padding: 72px 0; }
       .section-head { grid-template-columns: 1fr; gap: 12px; margin-bottom: 48px; }
       .section-title { font-size: clamp(2rem, 8vw, 3rem); }
+    }
+
+    /* VERY SMALL DEVICES (e.g., Pixel 10 at ~360px) */
+    @media (max-width: 400px) {
+      :root { --page: min(1180px, calc(100% - 24px)); }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1718,7 +1732,6 @@ let resizeTmr = null;
 let nextFrame = null;
 
 // --- SEED DISPLAY HELPER ---
-// Show the LAST 8 digits so each seed is visually distinct.
 function seedLabel(n) {
   return String(n).slice(-8);
 }
@@ -1969,6 +1982,7 @@ function drawCanvas() {
   window.cancelAnimationFrame(nextFrame);
   const canvas = document.getElementById('target');
   if (!canvas) return;
+  rng = new RandomGenerator(seed);   // FIX: reset RNG to seed before each render
   renderComposition(canvas, { features, rng });
   updateUI();
   drawSurfaces();
@@ -2185,7 +2199,7 @@ function loadArchiveSeed(index) {
   layoutCanvas();
   drawFramedPlate();
   drawSurfaces();
-  updateUI();  // ← Ensures Plate 001 shows the selected archive seed
+  updateUI();
   document.getElementById('work').scrollIntoView({ behavior: 'smooth' });
 }
 
